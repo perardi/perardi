@@ -1,4 +1,7 @@
-/*! HTML5 Boilerplate v5.0.0 | MIT License | http://h5bp.com/ */
+@import 'normalize.scss';
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,500');
+
+/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
 
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -10,8 +13,6 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-@import "normalize";
-
 html {
     color: #222;
     font-size: 1em;
@@ -22,7 +23,9 @@ html {
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
  *
- * These selection rule sets have to be separate.
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
  * Customize the background color to match your design.
  */
 
@@ -97,78 +100,42 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-body {
-	background: #666 url('../img/bg.jpg') no-repeat scroll top left;
-	background-size: cover;
-	font-family: 'Fira Sans', sans-serif;
-	color: #fff;
-	height: 100vh;
-}
+@import 'portfolio.scss';
 
-.main {
-	width: 50%;
-	margin: 0 auto;
-	background: rgba(0, 0, 0, 0.7);
-	height: 90vh;
-	margin-top: -1em;
-	padding: 10% 2.5em 0em 2.5em;
-}
-
-h1 {
-	font-size: 6vh;
-	font-weight: 300;
-	margin: 0;
-	padding: 0;
-	line-height: 0;
-}
-
-p {
-	font-size: 3vh;
-}
-
-.note {
-	font-size: 1.5vh;
-	font-style: italic;
-}
-
-a {
-	color: #fff;
-	text-decoration: none;
-	border-bottom: 1px solid #ddd;
-}
-
-a:hover {
-	color: #ddd;
-}
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
 /*
- * Hide visually and from screen readers:
- * http://juicystudio.com/article/screen-readers-display-none.php
+ * Hide visually and from screen readers
  */
 
 .hidden {
     display: none !important;
-    visibility: hidden;
 }
 
 /*
  * Hide only visually, but have it available for screen readers:
- * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
 
 .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
     height: 1px;
     margin: -1px;
     overflow: hidden;
     padding: 0;
     position: absolute;
     width: 1px;
+    white-space: nowrap; /* 1 */
 }
 
 /*
@@ -180,11 +147,14 @@ a:hover {
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
     clip: auto;
+    -webkit-clip-path: none;
+    clip-path: none;
     height: auto;
     margin: 0;
     overflow: visible;
     position: static;
     width: auto;
+    white-space: inherit;
 }
 
 /*
@@ -228,8 +198,8 @@ a:hover {
 }
 
 @media print,
-       (-o-min-device-pixel-ratio: 5/4),
        (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
@@ -274,6 +244,9 @@ a:hover {
         content: "";
     }
 
+    pre {
+        white-space: pre-wrap !important;
+    }
     pre,
     blockquote {
         border: 1px solid #999;
@@ -292,10 +265,6 @@ a:hover {
     tr,
     img {
         page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
     }
 
     p,

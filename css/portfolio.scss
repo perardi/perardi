@@ -1,0 +1,87 @@
+/* https://codepen.io/jessedodds/details/PbYQQw */
+
+$perardi-blue: lighten(#00aeef, 30%);
+$thicc-blue: 0.4em solid $perardi-blue;
+$thicc-white: 0.4em solid #ddd;
+
+body {
+	background: #444;
+	color: #fff;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+header {
+    width: 100vmin;
+	margin: 0 auto;
+}
+
+h1 {
+	font-weight: 300;
+	line-height: 2;
+	font-size: 2.25em;
+	margin: 0.5em 0 0 0;
+	padding: 0;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #eee;
+}
+
+h2 {
+	font-weight: 300;
+	line-height: 0.75;
+	font-size: 1em;
+	margin: 0;
+	padding: 0;	
+	font-style: italic;
+	color: #ddd;
+}
+
+section.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100vmin;
+    height: calc(75vh - 4em);
+    grid-gap: 2em;
+    margin: 0 auto;
+	padding-bottom: 4em;
+	padding-top: 2em;
+}
+
+article {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: $thicc-blue;
+}
+
+article:hover {
+	border-bottom: $thicc-white;	
+}
+
+article:hover .port_image {
+	opacity: 1;
+	filter: grayscale(0);
+}
+
+article p {
+	margin: 0;
+	position: absolute;
+	padding: 0;
+	line-height: 0;
+	text-align: center;
+	text-transform: uppercase;
+	opacity: 1 !important;
+	z-index: 4;
+	font-size: 1.5em;
+}
+
+.port_image {
+	background: #666 url('../img/temp.jpg') no-repeat scroll top left;
+	filter: grayscale(1);
+	opacity: 0.2;
+	background-size: cover;
+	width: 100%;
+	height: calc(100%);	
+	transition: all ease 0.3s;
+}
