@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Video Research</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<main>
+	
+<h1>Video Research <span class="go_to_notes"><a href="#notes">Jump to notes</a></span></h1>
+
+<p><strong>Video, with no poster fallback</strong></p>
+
+<video autoplay loop muted playsinline>
+  <img src="img/fallback.jpg">
+  <source src="video/anim.mp4">
+</video>
+
+<p><strong>Video, with poster fallback</strong></p>
+	
+<video autoplay loop muted playsinline poster="img/fallback.jpg">
+  <img src="img/fallback.jpg">
+  <source src="video/anim.mp4">
+</video>	
+
+<p id="notes"><strong>Purpose:</strong> figure out a reliable cross-platform way to display inline videos. Picture using h264 video files instead of GIFs. For longer animations or animations with photographic content, the file savings can be substantial.</p>
+
+<p><strong>Current issues:</strong> consistent autoplay on mobile devices. In particular, Android browsers, and iOS in low-power mode.</p>
+
+<p><strong>Relevant articles:</strong></p>
+
+<ul>
+	<li><a href="https://webkit.org/blog/6784/new-video-policies-for-ios/">New video Policies for iOS</a></li>
+	<li><a href="https://developers.google.com/web/updates/2016/07/autoplay">Muted Autoplay on Mobile: Say Goodbye to Canvas Hacks and Animated GIFs!</a></li>
+</ul>
+
+<p><strong>Caveat:</strong> This assumes the server is configured properly, with the correct MIME type and certificates. We ran into a problem on Mobile Chrome where an SSL page was calling an asset from a non-SSL server, and it didn't play.</p>
+
+<p><strong>Tested browsers (all the most current versions):</strong></p>
+
+<ul>
+	<li>Safari (desktop) <span class="circle circle_good"></span></li>
+	<li>Chrome (desktop) <span class="circle circle_good"></li>
+	<li>Firefox (desktop) <span class="circle circle_good"></li>
+	<li>MS Edge (desktop) <span class="circle circle_good"></li>
+	<li>IE11 (desktop) <em>(yes, really!)</em> <span class="circle circle_good"></li>
+	<li>Safari (mobile) <span class="circle circle_bad"></span></li>
+	<li class="longnote">This works as expected under normal conditions. However, iPhones have a low-power mode which disables animations. I cannot test the vagaries of this, as I don't have an iPhone. iPads, oddly, do not have this feature.</p>
+</li>
+	<li>Chrome (mobile) <span class="circle circle_bad"></li>
+	<li class="longnote">And here's where things get complicated. During our swblog QA process, sometimes Chrome worked, sometimes it didn't. I think I figured out the cause: <a href="https://support.google.com/chrome/answer/2392284?co=GENIE.Platform%3DAndroid&hl=en">Chrome Data Saver</a>. With this enabled, I just see a blank space, unless I specify a poster frame. With Data Saver off, the video plays as expected. Unfortunately, setting a poster frame causes a flash where you see the poster frame, then the video loads.</li>
+	<li>Firefox (mobile) <span class="circle circle_bad"></span></li>	
+	<li class="longnote">There is a global setting in Firefox to disabled autoplay. This ends up looking like Chrome with Data Saver; just a blank space, or the poster frame.</li>
+</ul>
+
+	
+</main>
+
+
+</body>
+
+</html>
