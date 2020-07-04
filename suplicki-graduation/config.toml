@@ -1,0 +1,5 @@
+baseURL = ""
+disableKinds = ["taxonomy", "taxonomyTerm"]
+relativeURLs = "true"
+languageCode = "en-us"
+title = "Achievement Unlocked: Graduation"
